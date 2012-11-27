@@ -2,9 +2,12 @@
   "name": "rainbowdriver",
   "version": "0.0.1",
   "description": "Node runner for Rainbowdriver, a Selenium compatible driver for metro style windows 8 / winjs apps.",
-  "main": "index.js",
   "scripts": {
     "test": "mocha"
+  },
+  "main": "./index",
+  "bin": {
+    "rainbowdriver": "./bin/rainbowdriver"
   },
   "repository": {
     "type": "git",
@@ -24,7 +27,6 @@
   "author": "Irae <irae@irae.pro.br>",
   "license": "BSD",
   "dependencies": {
-    "xmldom": "~0.1.13",
     "shelljs": "0.0.8"
   }
 }
