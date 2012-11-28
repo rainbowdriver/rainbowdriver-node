@@ -110,10 +110,11 @@ function Start-MetroApp {
 if ($args.Length -eq 0 ){
     Write-Host "Missing parameters"
 } else {
-    if ("get-list" -icontains $args){
+    if ($args -icontains "get-list"){
         Get-MetroApp
     }
-    elseif ("start-app") {
-        Start-MetroApp
+    elseif ($args -icontains "start-app") {
+        Write-Host $args[1]
+        Start-MetroApp $args[1]
     }
 }
