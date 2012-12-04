@@ -103,13 +103,66 @@ var rainbowDriver = rainbowDriver || {};
 
 })();
 
-
 var rainbowDriver = rainbowDriver || {};
 
 (function () {
     "use strict";
 
     rainbowDriver.commands = {
+        executeScript: function executeScript(data) {
+            var result = eval(data.script);
+
+            return JSON.stringify({
+                name: 'executeScript',
+                status: 0,
+                value: result
+            });
+        },
+
+        findElement: function findElement(data) {
+            var element = document.querySelector(data.selector);
+
+            if (element) {
+                return JSON.stringify({
+                    name: 'findElement',
+                    elementId: new Date().getTime(),
+                    selector: data.selector,
+                    status: 0
+                });
+            } else {
+                return JSON.stringify({
+                    name: 'findElement',
+                    status: 7,
+                    selector: data.selector
+                });
+            }
+        },
+
+        isElementDisplayed: function isElementDisplayed(data) {
+            var element = document.querySelector(data.selector);
+
+            return JSON.stringify({
+                name: 'isElementDisplayed',
+                status: 0,
+                value: element.style.display !== "none"
+            });
+        },
+
+        getElementAttribute: function findElement(data) {
+            var element = document.querySelector(data.selector);
+
+            if (!element) {
+                return false;
+            }
+            else {
+                var response = JSON.stringify({
+                    name: 'getElementAttribute',
+                    value: element.getAttribute(data.attribute)
+                });
+                return response;
+            }
+        },
+
         click: function clickElement(data) {
             var element = document.querySelector(data.selector),
                 rect = element.getClientRects()[0],
