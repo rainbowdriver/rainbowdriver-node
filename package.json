@@ -27,6 +27,7 @@
   "author": "Irae <irae@irae.pro.br>",
   "license": "BSD",
   "dependencies": {
-    "shelljs": "0.0.8"
+    "shelljs": "0.0.8",
+    "optimist": "~0.3.5"
   }
 }
