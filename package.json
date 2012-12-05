@@ -28,6 +28,8 @@
   "license": "BSD",
   "dependencies": {
     "shelljs": "0.0.8",
-    "optimist": "~0.3.5"
+    "optimist": "~0.3.5",
+    "rainbowdriver-client": "0.0.1",
+    "rainbowdriver-server": "0.0.1"
   }
 }
