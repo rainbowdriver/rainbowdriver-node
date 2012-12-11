@@ -29,7 +29,7 @@
   "dependencies": {
     "shelljs": "0.0.8",
     "optimist": "~0.3.5",
-    "rainbowdriver-client": "https://github.com/rainbowdriver/rainbowdriver-client/tarball/master",
-    "rainbowdriver-server": "https://github.com/rainbowdriver/rainbowdriver-server/tarball/master"
+    "rainbowdriver-client": "git://github.com/rainbowdriver/rainbowdriver-client.git",
+    "rainbowdriver-server": "git://github.com/rainbowdriver/rainbowdriver-server.git"
   }
 }
