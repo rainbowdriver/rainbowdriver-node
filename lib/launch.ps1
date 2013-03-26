@@ -5,9 +5,7 @@ Date: 11/2/2012
 
 This module provides two functions:
 
-Get-MetroApp - This cmdlet reads the registry for the keys that have the launcher id and the entry point (interesting for xaml apps, but not so much for html5 apps)
-
-Start-MetroApp - This cmdlet uses one of the ids returned by Get-metroapp to launch an app in the win8 metro interface
+Start-MetroApp - This cmdlet uses one of the ids returned by Get-AppxPackage to launch an app in the win8 metro interface
 
 Apologies for the lack of get-help documentation, but I'll be doing a blog post about this shortly:
 http://powertoe.wordpress.com
@@ -60,6 +58,7 @@ namespace Win8 {
 add-type -TypeDefinition $code
 $appman = new-object Win8.ApplicationActivationManager
 
+
 function Get-MetroApp {
     $entry = 'HKCU:\Software\Classes\ActivatableClasses\Package'
     foreach ($appkey in (dir $entry |select -ExpandProperty pspath)) {
@@ -99,22 +98,17 @@ function Get-MetroApp {
     }
 }
 
+
 function Start-MetroApp {
     param(
         [Parameter(Mandatory=$true, Position=0, ValueFromPipelineByPropertyName=$true)]
-        [string] $ID
+        [string] $PackageFullName
     )
-    $appman.ActivateApplication($ID,$null,[Win8.ActivateOptions]::None,[ref]0)
+    $entry = 'HKCU:\Software\Classes\ActivatableClasses\Package'
+    $AppUserModelId = ((Get-ChildItem "HKCU:\Software\Classes\ActivatableClasses\Package\$PackageFullName\server" -Exclude "BackgroundTransferHost.1")[0] | Get-ItemProperty).AppUserModelId
+
+    $appPID = 0
+    $appman.ActivateApplication($AppUserModelId,$null,[Win8.ActivateOptions]::None,[ref]$appPID)
 }
 
-if ($args.Length -eq 0 ){
-    Write-Host "Missing parameters"
-} else {
-    if ($args -icontains "get-list"){
-        Get-MetroApp
-    }
-    elseif ($args -icontains "start-app") {
-        Write-Host $args[1]
-        Start-MetroApp $args[1]
-    }
-}
+Get-AppxPackage | where name -eq $args[0] | Start-MetroApp
