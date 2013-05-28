@@ -1,6 +1,6 @@
 {
   "name": "rainbowdriver",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Node runner for Rainbowdriver, a Selenium compatible driver for metro style windows 8 / winjs apps.",
   "scripts": {
     "test": "mocha"
@@ -29,7 +29,7 @@
   "dependencies": {
     "shelljs": "0.0.8",
     "optimist": "~0.3.5",
-    "rainbowdriver-client": "0.0.5",
-    "rainbowdriver-server": "0.0.5"
+    "rainbowdriver-client": "0.0.6",
+    "rainbowdriver-server": "0.0.6"
   }
 }
