@@ -1,5 +1,7 @@
 # Rainbow Driver
 
+_Please note this project has been deprecated and will not be maintained anymore_
+
 RainbowDriver is an attempt to implement the Selenium JSON Wire Protocol for
 WinJS / Windows 8 applications (formerly known as Metro).
 
